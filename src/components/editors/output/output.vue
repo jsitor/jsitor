@@ -9,9 +9,9 @@ export default {
   props: ["css", "js", "html"],
 
   mounted() {
-    this.document = document.getElementById(
+    this.window = document.getElementById(
       "iframe-output"
-    ).contentWindow.document;
+    ).contentWindow;
   },
 
   watch: {
@@ -28,12 +28,12 @@ export default {
 
   methods: {
     write(){
-      this.document.open();
+      this.window.document.open();
       let htmlSource = this.html;
       htmlSource += `<style>${this.css}<\/style>`;
       htmlSource += `<script>${this.js}<\/script>`;
-      this.document.write(htmlSource);
-      this.document.close();
+      this.window.document.write(htmlSource);
+      this.window.document.close();
     }
   }
 };
