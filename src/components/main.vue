@@ -1,0 +1,25 @@
+<template>
+  <div class="main-container">
+    <EditorsComponent></EditorsComponent>
+    <NavComponent></NavComponent>
+  </div>
+</template>
+
+<script>
+import NavComponent from "./nav/nav.vue";
+import EditorsComponent from "./editors/editors.vue";
+export default {
+  components: {
+    NavComponent,
+    EditorsComponent
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.main-container {
+  height: 100%;
+  width: 100%;
+}
+</style>
