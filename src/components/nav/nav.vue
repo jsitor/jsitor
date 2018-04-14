@@ -1,6 +1,7 @@
 <template>
   <nav>
     <ul class="links">
+      <li><span class="icon icon-user-plus" onclick="TogetherJS(this); return false;"></span></li>
       <li><span class="icon icon-play"></span></li>
       <li><span class="icon icon-grid"></span></li>
       <li><span class="icon icon-align-left"></span></li>
@@ -41,6 +42,10 @@ nav {
       &:hover{
         cursor: pointer;
         background: darken($bg-color, 5%);
+      }
+
+      &:active{
+        background: darken($bg-color, 8%);
       }
     }
   }
