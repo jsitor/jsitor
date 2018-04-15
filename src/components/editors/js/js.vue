@@ -2,7 +2,8 @@
   <div id="editor-js" class="editor">
     <header>
       <span class="icon-hash"></span> JavaScript
-      <span class="right icon-maximize-2"></span>
+      <span v-show="expandSourceType !== 'js'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'js')"></span>
+      <span v-show="expandSourceType === 'js'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="source"
@@ -19,7 +20,7 @@ import "codemirror/mode/javascript/javascript.js";
 import "codemirror/theme/material.css";
 
 export default {
-  props: ['source'],
+  props: ['source', 'expandSourceType'],
   components: {
     codemirror
   },

@@ -2,7 +2,8 @@
   <div id="editor-html" class="editor">
     <header>
       <span class="icon-hash"></span> HTML
-      <span class="right icon-maximize-2"></span>
+      <span v-show="expandSourceType !== 'html'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'html')"></span>
+      <span v-show="expandSourceType === 'html'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="source"
@@ -21,7 +22,7 @@ import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/material.css";
 
 export default {
-  props: ['source'],
+  props: ['source', 'expandSourceType'],
   components: {
     codemirror
   },

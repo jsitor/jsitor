@@ -1,8 +1,28 @@
 <template>
-  <div class="editors">
-    <JavascriptEditorComponent @onChange="onChangeJavascript" :source="js"></JavascriptEditorComponent>
-    <HTMLEditorComponent @onChange="onChangeHTML" :source="html"></HTMLEditorComponent>
-    <CSSEditorComponent @onChange="onChangeCSS"  :source="css"></CSSEditorComponent>
+  <div class="editors" :class="expandSourceType">
+    <JavascriptEditorComponent
+      @onChange="onChangeJavascript"
+      @onExpandClicked="onExpandClicked"
+      @onShrinkClicked="onShrinkClicked"
+      :expandSourceType="expandSourceType"
+      :source="js">
+    </JavascriptEditorComponent>
+
+    <HTMLEditorComponent
+      @onChange="onChangeHTML"
+      @onExpandClicked="onExpandClicked"
+      @onShrinkClicked="onShrinkClicked"
+      :expandSourceType="expandSourceType"
+      :source="html">
+    </HTMLEditorComponent>
+
+    <CSSEditorComponent
+      @onChange="onChangeCSS"
+      @onExpandClicked="onExpandClicked"
+      @onShrinkClicked="onShrinkClicked"
+      :expandSourceType="expandSourceType"
+      :source="css">
+    </CSSEditorComponent>
     <OutputEditorComponent :js="js" :css="css" :html="html"></OutputEditorComponent>
   </div>
 </template>
@@ -14,9 +34,9 @@ import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
 
 const STORAGE = {
-  JS: 'js',
-  CSS: 'css',
-  HTML: 'html'
+  JS: "js",
+  CSS: "css",
+  HTML: "html"
 };
 
 export default {
@@ -31,11 +51,12 @@ export default {
     return {
       js: "",
       html: "",
-      css: ""
+      css: "",
+      expandSourceType: ""
     };
   },
 
-  mounted(){
+  mounted() {
     this.js = localStorage.getItem(STORAGE.JS);
     this.css = localStorage.getItem(STORAGE.CSS);
     this.html = localStorage.getItem(STORAGE.HTML);
@@ -55,14 +76,20 @@ export default {
     onChangeCSS(source) {
       this.css = source;
       localStorage.setItem(STORAGE.CSS, this.css);
+    },
+
+    onExpandClicked(sourceType) {
+      this.expandSourceType = sourceType;
+    },
+
+    onShrinkClicked() {
+      this.expandSourceType = "";
     }
   }
 };
 </script>
 
 <style lang="scss">
-
-
 $gray-darker: #4a4a4a;
 .editors {
   height: 100%;
@@ -73,6 +100,24 @@ $gray-darker: #4a4a4a;
 
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
+
+  &.js {
+    grid-template-areas:
+      "js js"
+      "js js";
+  }
+
+  &.html {
+    grid-template-areas:
+      "html html"
+      "html html";
+  }
+
+  &.css {
+    grid-template-areas:
+      "css css"
+      "css css";
+  }
 
   .editor {
     border-color: lightgray;
@@ -100,7 +145,7 @@ $gray-darker: #4a4a4a;
         background: transparent;
         box-shadow: none;
 
-        .CodeMirror-linenumber{
+        .CodeMirror-linenumber {
           color: #4a4a4a;
           text-shadow: none;
         }
@@ -117,8 +162,8 @@ $gray-darker: #4a4a4a;
   #editor-js {
     grid-area: js;
 
-    &:before{
-      content: '';
+    &:before {
+      content: "";
       position: absolute;
       top: 0;
       right: 0;
@@ -126,8 +171,8 @@ $gray-darker: #4a4a4a;
       border-right: 1px solid $gray-darker;
     }
 
-    &:after{
-      content: '';
+    &:after {
+      content: "";
       position: absolute;
       left: 0;
       bottom: 0;

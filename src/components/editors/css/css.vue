@@ -2,7 +2,8 @@
   <div id="editor-css" class="editor">
     <header>
       <span class="icon-hash"></span> CSS
-      <span class="right icon-maximize-2"></span>
+      <span v-show="expandSourceType !== 'css'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'css')"></span>
+      <span v-show="expandSourceType === 'css'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="source"
@@ -19,7 +20,7 @@ import "codemirror/mode/css/css.js";
 import "codemirror/theme/material.css";
 
 export default {
-  props: ['source'],
+  props: ['source', 'expandSourceType'],
   components: {
     codemirror
   },
