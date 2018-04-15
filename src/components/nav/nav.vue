@@ -1,10 +1,17 @@
 <template>
   <nav>
-    <span class="title"><b>&lt;</b>jsitorn/<b>&gt;</b></span>
+    <span class="title"><b>&lt;</b>jsitor/<b>&gt;</b></span>
     <ul class="links">
       <li onclick="TogetherJS(this); return false;">
         <span class="icon icon-user-plus"></span>
         <span class="text">Collobrate</span>
+      </li>
+
+      <li>
+        <a href="https://github.com/jsitor/jsitor" target="_blank">
+          <span class="icon-star"></span>
+          <span class="text">Github</span>
+        </a>
       </li>
       <!--<li>
         <span class="icon icon-play"></span>
