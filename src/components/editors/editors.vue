@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+
+$gray-darker: #4a4a4a;
 .editors {
   height: 100%;
   display: grid;
@@ -69,6 +72,7 @@ export default {
       position: absolute;
       z-index: 10;
       color: lightgray;
+      width: 100%;
     }
 
     .vue-codemirror {
@@ -97,6 +101,24 @@ export default {
 
   #editor-js {
     grid-area: js;
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      border-right: 1px solid $gray-darker;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-bottom: 1px solid $gray-darker;
+    }
   }
 
   #editor-css {

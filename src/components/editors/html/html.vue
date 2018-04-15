@@ -1,6 +1,9 @@
 <template>
   <div id="editor-html" class="editor">
-    <header>HTML</header>
+    <header>
+      <span class="icon-hash"></span> HTML
+      <span class="right icon-maximize-2"></span>
+    </header>
     <codemirror
       v-model="source"
       :options="options"

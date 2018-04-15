@@ -20,24 +20,26 @@ export default {};
 
 $bg-color: #02a948;
 nav {
-  background: $bg-color;
   color: white;
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
   font-size: 14px;
   text-align: right;
-  padding: 5px 0;
   border-radius: 5px;
+  overflow: hidden;
+  background: $bg-color;
 
   ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: inline-block;
+    overflow: auto;
 
     li {
       padding: 5px 10px;
+      float: left;
+      height: 26px;
 
       &:hover{
         cursor: pointer;

@@ -1,6 +1,9 @@
 <template>
   <div id="editor-css" class="editor">
-    <header>CSS</header>
+    <header>
+      <span class="icon-hash"></span> CSS
+      <span class="right icon-maximize-2"></span>
+    </header>
     <codemirror
       v-model="source"
       :options="options"
@@ -32,7 +35,7 @@ export default {
   },
   methods: {
     onSourceChange(source) {
-      this.$emit('onChange', this.source);
+      this.$emit("onChange", this.source);
     }
   }
 };
