@@ -1,8 +1,8 @@
 <template>
   <div class="editors">
-    <JavascriptEditorComponent @onChange="onChangeJavascript"></JavascriptEditorComponent>
-    <HTMLEditorComponent @onChange="onChangeHTML"></HTMLEditorComponent>
-    <CSSEditorComponent @onChange="onChangeCSS"></CSSEditorComponent>
+    <JavascriptEditorComponent @onChange="onChangeJavascript" :source="js"></JavascriptEditorComponent>
+    <HTMLEditorComponent @onChange="onChangeHTML" :source="html"></HTMLEditorComponent>
+    <CSSEditorComponent @onChange="onChangeCSS"  :source="css"></CSSEditorComponent>
     <OutputEditorComponent :js="js" :css="css" :html="html"></OutputEditorComponent>
   </div>
 </template>
@@ -12,6 +12,12 @@ import JavascriptEditorComponent from "./js/js.vue";
 import HTMLEditorComponent from "./html/html.vue";
 import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
+
+const STORAGE = {
+  JS: 'js',
+  CSS: 'css',
+  HTML: 'html'
+};
 
 export default {
   components: {
@@ -29,17 +35,26 @@ export default {
     };
   },
 
+  mounted(){
+    this.js = localStorage.getItem(STORAGE.JS);
+    this.css = localStorage.getItem(STORAGE.CSS);
+    this.html = localStorage.getItem(STORAGE.HTML);
+  },
+
   methods: {
     onChangeJavascript(source) {
       this.js = source;
+      localStorage.setItem(STORAGE.JS, this.js);
     },
 
     onChangeHTML(source) {
       this.html = source;
+      localStorage.setItem(STORAGE.HTML, this.html);
     },
 
     onChangeCSS(source) {
       this.css = source;
+      localStorage.setItem(STORAGE.CSS, this.css);
     }
   }
 };

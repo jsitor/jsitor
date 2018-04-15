@@ -19,17 +19,20 @@ import "codemirror/mode/javascript/javascript.js";
 import "codemirror/theme/material.css";
 
 export default {
+  props: ['source'],
   components: {
     codemirror
   },
   data() {
     return {
-      source: "",
       options: {
         tabSize: 2,
         mode: "text/javascript",
         theme: "material",
-        lineNumbers: true
+        lineNumbers: true,
+        smartIndent: true,
+        lineWrapping: true,
+        autofocus: true
       }
     };
   },

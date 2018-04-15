@@ -21,18 +21,20 @@ import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/material.css";
 
 export default {
+  props: ['source'],
   components: {
     codemirror
   },
   data() {
     return {
-      source: "",
       options: {
         tabSize: 2,
         mode: "text/html",
         theme: "material",
         lineNumbers: true,
-        htmlMode: true
+        htmlMode: true,
+        smartIndent: true,
+        lineWrapping: true
       }
     };
   },

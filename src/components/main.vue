@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
-    <EditorsComponent></EditorsComponent>
     <NavComponent></NavComponent>
+    <EditorsComponent></EditorsComponent>
   </div>
 </template>
 
@@ -21,5 +21,8 @@ export default {
 .main-container {
   height: 100%;
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 </style>
