@@ -6,7 +6,7 @@
       <span v-show="expandSourceType === 'html'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
-      v-model="source"
+      v-model="localSource"
       :options="options"
       @input="onSourceChange">
     </codemirror>
@@ -15,33 +15,33 @@
 
 <script>
 import { codemirror } from "vue-codemirror";
-
-import "codemirror/mode/xml/xml.js";
-import "codemirror/mode/htmlmixed/htmlmixed.js";
-
-import "codemirror/theme/material.css";
+import { EDITOR_OPTIONS } from "../editors.consts";
 
 export default {
   props: ['source', 'expandSourceType'],
   components: {
     codemirror
   },
+
   data() {
     return {
-      options: {
-        tabSize: 2,
+      localSource: '',
+      options: Object.assign({}, EDITOR_OPTIONS, {
         mode: "text/html",
-        theme: "material",
-        lineNumbers: true,
-        htmlMode: true,
-        smartIndent: true,
-        lineWrapping: true
-      }
+        htmlMode: true
+      })
     };
   },
+
+  watch: {
+    source(newValue) {
+      this.localSource = newValue;
+    }
+  },
+
   methods: {
     onSourceChange(source) {
-      this.$emit("onChange", this.source);
+      this.$emit("onChange", source);
     }
   }
 };

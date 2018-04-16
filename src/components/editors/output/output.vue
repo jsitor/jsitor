@@ -29,9 +29,10 @@ export default {
   methods: {
     write(){
       this.window.document.open();
-      let htmlSource = this.html;
-      htmlSource += `<style>${this.css}<\/style>`;
-      htmlSource += `<script>${this.js}<\/script>`;
+      let htmlSource = this.html || '';
+      htmlSource += `<style>${this.css || ''}<\/style>`;
+      htmlSource += `<script>${this.js || ''}<\/script>`;
+
       this.window.document.write(htmlSource);
       this.window.document.close();
     }

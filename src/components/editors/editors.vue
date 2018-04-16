@@ -33,6 +33,13 @@ import HTMLEditorComponent from "./html/html.vue";
 import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
 
+//CodeMirror imports
+import "codemirror/mode/css/css.js";
+import "codemirror/mode/javascript/javascript.js";
+import "codemirror/mode/xml/xml.js";
+import "codemirror/mode/htmlmixed/htmlmixed.js";
+import "codemirror/theme/material.css";
+
 const STORAGE = {
   JS: "js",
   CSS: "css",
