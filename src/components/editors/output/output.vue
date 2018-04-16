@@ -1,5 +1,9 @@
 <template>
   <div id="editor-output" class="editor output">
+    <header>
+      <span v-show="expandSourceType !== 'output'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'output')"></span>
+      <span v-show="expandSourceType === 'output'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
+    </header>
     <iframe id="iframe-output"></iframe>
   </div>
 </template>
@@ -8,7 +12,7 @@
 import { EventBus } from '../../event-bus';
 
 export default {
-  props: ["css", "js", "html"],
+  props: ["css", "js", "html", "expandSourceType"],
 
   mounted() {
     this.window = document.getElementById(

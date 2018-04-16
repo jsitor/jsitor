@@ -1,6 +1,16 @@
 <template>
   <nav>
-    <span class="title"><b>&lt;</b>/<b>&gt;</b></span>
+    <span class="title">
+      <b>&lt;/&gt;</b>
+    </span>
+
+    <ul class="links-source" v-show="sourceType !== ''">
+      <li :class="{ active: sourceType === 'js'}" @click="$emit('onSourceTypeChange', 'js')">JS</li>
+      <li :class="{ active: sourceType === 'css'}" @click="$emit('onSourceTypeChange', 'css')">CSS</li>
+      <li :class="{ active: sourceType === 'html'}" @click="$emit('onSourceTypeChange', 'html')">HTML</li>
+      <li :class="{ active: sourceType === 'output'}" @click="$emit('onSourceTypeChange', 'output')">Result</li>
+    </ul>
+
     <ul class="links">
 
       <li @click="$emit('onRunClicked')">
@@ -45,7 +55,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['sourceType']
+};
 </script>
 
 <style scoped lang="scss" src="./nav.scss"></style>

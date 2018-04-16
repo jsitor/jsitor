@@ -25,6 +25,8 @@ export default {
 
 <style>
 @import "./styles/style.css";
+@import "./styles/common.scss";
+
 
 html,
 body {

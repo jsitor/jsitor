@@ -24,6 +24,10 @@ $gray-darker: #2d333b;
       grid-template-areas: "css css" "css css";
     }
 
+    &.output {
+      grid-template-areas: "output output" "output output";
+    }
+
     .editor {
       border-color: lightgray;
       border-style: solid;
@@ -44,6 +48,7 @@ $gray-darker: #2d333b;
         height: 100%;
         padding-top: 36px;
         background: #21272f;
+        font-size: 13px;
 
         .CodeMirror {
           height: 100%;
