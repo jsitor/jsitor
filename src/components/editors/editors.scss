@@ -1,0 +1,109 @@
+$gray-darker: #2d333b;
+
+.editors {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .editors-content {
+    height: 100%;
+    display: grid;
+    grid-template-areas: "js css" "html output";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+
+    &.js {
+      grid-template-areas: "js js" "js js";
+    }
+
+    &.html {
+      grid-template-areas: "html html" "html html";
+    }
+
+    &.css {
+      grid-template-areas: "css css" "css css";
+    }
+
+    .editor {
+      border-color: lightgray;
+      border-style: solid;
+      border-width: 0;
+      position: relative;
+      width: inherit;
+
+      header {
+        font-size: 12px;
+        padding: 10px;
+        position: absolute;
+        z-index: 10;
+        color: lightgray;
+        width: 100%;
+      }
+
+      .vue-codemirror {
+        height: 100%;
+        padding-top: 36px;
+        background: #21272f;
+
+        .CodeMirror {
+          height: 100%;
+          background: transparent;
+          box-shadow: none;
+          font-family: Menlo, Monaco, 'Courier New', monospace;
+
+          .CodeMirror-linenumber {
+            color: #4a4a4a;
+            text-shadow: none;
+          }
+
+          .CodeMirror-gutters {
+            background: transparent;
+            box-shadow: none;
+            border: 0;
+          }
+
+          .CodeMirror-matchingbracket {
+            color: lighten(yellow, 10%) !important;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    #editor-js {
+      grid-area: js;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background: $gray-darker;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1px;
+        width: 100%;
+        background: $gray-darker;
+      }
+    }
+
+    #editor-css {
+      grid-area: css;
+    }
+
+    #editor-html {
+      grid-area: html;
+    }
+
+    #editor-output {
+      grid-area: output;
+    }
+  }
+}

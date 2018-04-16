@@ -1,7 +1,7 @@
 <template>
   <div id="editor-js" class="editor">
     <header>
-      <span class="icon-hash"></span> JavaScript
+      JavaScript
       <span v-show="expandSourceType !== 'js'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'js')"></span>
       <span v-show="expandSourceType === 'js'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>

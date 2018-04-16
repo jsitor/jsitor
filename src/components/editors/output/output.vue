@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { EventBus } from '../../event-bus';
+
 export default {
   props: ["css", "js", "html"],
 
@@ -14,24 +16,31 @@ export default {
     ).contentWindow;
   },
 
-  watch: {
-    html() {
+  // watch: {
+  //   html() {
+  //     this.write();
+  //   },
+  //   css() {
+  //     this.write();
+  //   },
+  //   js() {
+  //     this.write();
+  //   }
+  // },
+
+  created(){
+    EventBus.$on('run', clickCount => {
       this.write();
-    },
-    css() {
-      this.write();
-    },
-    js() {
-      this.write();
-    }
+    });
   },
 
   methods: {
     write(){
       this.window.document.open();
-      let htmlSource = this.html || '';
+      let htmlSource = '';
       htmlSource += `<style>${this.css || ''}<\/style>`;
       htmlSource += `<script>${this.js || ''}<\/script>`;
+      htmlSource += this.html || '';
 
       this.window.document.write(htmlSource);
       this.window.document.close();

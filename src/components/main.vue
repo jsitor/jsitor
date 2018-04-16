@@ -1,16 +1,13 @@
 <template>
   <div class="main-container">
-    <NavComponent></NavComponent>
     <EditorsComponent></EditorsComponent>
   </div>
 </template>
 
 <script>
-import NavComponent from "./nav/nav.vue";
 import EditorsComponent from "./editors/editors.vue";
 export default {
   components: {
-    NavComponent,
     EditorsComponent
   }
 };
@@ -21,8 +18,5 @@ export default {
 .main-container {
   height: 100%;
   width: 100%;
-
-  display: flex;
-  flex-direction: column;
 }
 </style>

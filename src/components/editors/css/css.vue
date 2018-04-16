@@ -1,7 +1,7 @@
 <template>
   <div id="editor-css" class="editor">
     <header>
-      <span class="icon-hash"></span> CSS
+      CSS
       <span v-show="expandSourceType !== 'css'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'css')"></span>
       <span v-show="expandSourceType === 'css'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>

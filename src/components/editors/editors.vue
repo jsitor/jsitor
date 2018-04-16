@@ -1,29 +1,41 @@
 <template>
-  <div class="editors" :class="expandSourceType">
-    <JavascriptEditorComponent
-      @onChange="onChangeJavascript"
-      @onExpandClicked="onExpandClicked"
-      @onShrinkClicked="onShrinkClicked"
-      :expandSourceType="expandSourceType"
-      :source="js">
-    </JavascriptEditorComponent>
+  <div class="editors">
+    <NavComponent
+      @onRunClicked="onRunClicked">
+    </NavComponent>
 
-    <HTMLEditorComponent
-      @onChange="onChangeHTML"
-      @onExpandClicked="onExpandClicked"
-      @onShrinkClicked="onShrinkClicked"
-      :expandSourceType="expandSourceType"
-      :source="html">
-    </HTMLEditorComponent>
+    <div class="editors-content" :class="expandSourceType">
 
-    <CSSEditorComponent
-      @onChange="onChangeCSS"
-      @onExpandClicked="onExpandClicked"
-      @onShrinkClicked="onShrinkClicked"
-      :expandSourceType="expandSourceType"
-      :source="css">
-    </CSSEditorComponent>
-    <OutputEditorComponent :js="js" :css="css" :html="html"></OutputEditorComponent>
+      <JavascriptEditorComponent
+        @onChange="onChangeJavascript"
+        @onExpandClicked="onExpandClicked"
+        @onShrinkClicked="onShrinkClicked"
+        :expandSourceType="expandSourceType"
+        :source="js">
+      </JavascriptEditorComponent>
+
+      <HTMLEditorComponent
+        @onChange="onChangeHTML"
+        @onExpandClicked="onExpandClicked"
+        @onShrinkClicked="onShrinkClicked"
+        :expandSourceType="expandSourceType"
+        :source="html">
+      </HTMLEditorComponent>
+
+      <CSSEditorComponent
+        @onChange="onChangeCSS"
+        @onExpandClicked="onExpandClicked"
+        @onShrinkClicked="onShrinkClicked"
+        :expandSourceType="expandSourceType"
+        :source="css">
+      </CSSEditorComponent>
+
+      <OutputEditorComponent
+        :js="js"
+        :css="css"
+        :html="html">
+      </OutputEditorComponent>
+    </div>
   </div>
 </template>
 
@@ -32,12 +44,29 @@ import JavascriptEditorComponent from "./js/js.vue";
 import HTMLEditorComponent from "./html/html.vue";
 import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
+import NavComponent from "./nav/nav.vue";
+import { EventBus } from '../event-bus.js';
 
-//CodeMirror imports
+//CodeMirror imports - modes
 import "codemirror/mode/css/css.js";
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/mode/xml/xml.js";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
+
+//CodeMirror addon
+import "codemirror/addon/edit/closebrackets.js";
+import "codemirror/addon/edit/matchbrackets.js";
+import "codemirror/addon/fold/xml-fold.js";
+import "codemirror/addon/edit/matchtags.js";
+
+import "codemirror/addon/hint/show-hint.js";
+import "codemirror/addon/hint/xml-hint.js";
+import "codemirror/addon/hint/html-hint.js";
+import "codemirror/addon/hint/javascript-hint.js";
+import "codemirror/addon/hint/css-hint.js";
+
+//CodeMirror themes
+import "codemirror/addon/hint/show-hint.css";
 import "codemirror/theme/material.css";
 
 const STORAGE = {
@@ -51,7 +80,8 @@ export default {
     JavascriptEditorComponent,
     HTMLEditorComponent,
     CSSEditorComponent,
-    OutputEditorComponent
+    OutputEditorComponent,
+    NavComponent
   },
 
   data() {
@@ -59,7 +89,8 @@ export default {
       js: "",
       html: "",
       css: "",
-      expandSourceType: ""
+      expandSourceType: "",
+      autoRun: false
     };
   },
 
@@ -70,6 +101,11 @@ export default {
   },
 
   methods: {
+
+    onRunClicked(){
+      EventBus.$emit('run');
+    },
+
     onChangeJavascript(source) {
       this.js = source;
       localStorage.setItem(STORAGE.JS, this.js);
@@ -96,108 +132,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$gray-darker: #4a4a4a;
-.editors {
-  height: 100%;
-  display: grid;
-  grid-template-areas:
-    "js css"
-    "html output";
-
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-
-  &.js {
-    grid-template-areas:
-      "js js"
-      "js js";
-  }
-
-  &.html {
-    grid-template-areas:
-      "html html"
-      "html html";
-  }
-
-  &.css {
-    grid-template-areas:
-      "css css"
-      "css css";
-  }
-
-  .editor {
-    border-color: lightgray;
-    border-style: solid;
-    border-width: 0;
-    position: relative;
-    width: inherit;
-
-    header {
-      font-size: 12px;
-      padding: 10px;
-      position: absolute;
-      z-index: 10;
-      color: lightgray;
-      width: 100%;
-    }
-
-    .vue-codemirror {
-      height: 100%;
-      padding-top: 36px;
-      background: #263238;
-
-      .CodeMirror {
-        height: 100%;
-        background: transparent;
-        box-shadow: none;
-
-        .CodeMirror-linenumber {
-          color: #4a4a4a;
-          text-shadow: none;
-        }
-
-        .CodeMirror-gutters {
-          background: transparent;
-          box-shadow: none;
-          border: 0;
-        }
-      }
-    }
-  }
-
-  #editor-js {
-    grid-area: js;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      border-right: 1px solid $gray-darker;
-    }
-
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      border-bottom: 1px solid $gray-darker;
-    }
-  }
-
-  #editor-css {
-    grid-area: css;
-  }
-
-  #editor-html {
-    grid-area: html;
-  }
-
-  #editor-output {
-    grid-area: output;
-  }
-}
-</style>
+<style lang="scss" src="./editors.scss"></style>

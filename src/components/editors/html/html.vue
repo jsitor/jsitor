@@ -1,7 +1,7 @@
 <template>
   <div id="editor-html" class="editor">
     <header>
-      <span class="icon-hash"></span> HTML
+      HTML
       <span v-show="expandSourceType !== 'html'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'html')"></span>
       <span v-show="expandSourceType === 'html'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
@@ -28,6 +28,7 @@ export default {
       localSource: '',
       options: Object.assign({}, EDITOR_OPTIONS, {
         mode: "text/html",
+        matchTags: {bothTags: true},
         htmlMode: true
       })
     };
