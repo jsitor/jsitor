@@ -51,6 +51,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+#iframe-container{
+  height: 100%;
+  width: 100%;
+}
+
 iframe {
   border: 0;
   height: 100%;
