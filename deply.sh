@@ -11,6 +11,8 @@ rm -r ../jsitor.github.io/index.html
 
 cp -r ./dist/* ../jsitor.github.io
 
+cd ../jsitor.github.io
+
 git add .
 git commit -m "$1"
 git push -u origin master
