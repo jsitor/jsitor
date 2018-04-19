@@ -5,8 +5,12 @@ import App from './App'
 import router from './router'
 
 import VueCodemirror from 'vue-codemirror'
+import VueSplit from 'vue-split-panel'
+
 import 'codemirror/lib/codemirror.css'
+
 Vue.use(VueCodemirror);
+Vue.use(VueSplit);
 
 Vue.config.productionTip = false
 
