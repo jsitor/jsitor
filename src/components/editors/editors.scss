@@ -6,26 +6,56 @@ $gray-darker: #2d333b;
   flex-direction: column;
 
   .editors-content {
+    position: relative;
     height: 100%;
-    display: grid;
-    grid-template-areas: "js css" "html output";
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+
+    .gutter{
+      background: black;
+    }
 
     &.js {
-      grid-template-areas: "js js" "js js";
+      #editor-js{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 100;
+      }
     }
 
     &.html {
-      grid-template-areas: "html html" "html html";
+      #editor-html{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 100;
+      }
     }
 
     &.css {
-      grid-template-areas: "css css" "css css";
+      #editor-css{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 100;
+      }
     }
 
     &.output {
-      grid-template-areas: "output output" "output output";
+      #editor-output{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        background: white;
+      }
     }
 
     .editor {
@@ -34,6 +64,7 @@ $gray-darker: #2d333b;
       border-width: 0;
       position: relative;
       width: inherit;
+      height: 100%;
 
       header {
         font-size: 12px;
@@ -76,7 +107,7 @@ $gray-darker: #2d333b;
     }
 
     #editor-js {
-      grid-area: js;
+      // grid-area: js;
 
       &:before {
         content: "";
@@ -97,18 +128,6 @@ $gray-darker: #2d333b;
         width: 100%;
         background: $gray-darker;
       }
-    }
-
-    #editor-css {
-      grid-area: css;
-    }
-
-    #editor-html {
-      grid-area: html;
-    }
-
-    #editor-output {
-      grid-area: output;
     }
   }
 }

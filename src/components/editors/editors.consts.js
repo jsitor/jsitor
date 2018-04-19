@@ -6,6 +6,7 @@ export const EDITOR_OPTIONS = {
   smartIndent: true,
   lineWrapping: true,
   matchBrackets: true,
+  viewportMargin: Infinity, //to support resize effect
   ctrl_z: 'undo',
   ctrl_y: 'redo',
   ctrl_bracket: 'highlight-brackets',
