@@ -10,8 +10,11 @@ export const EDITOR_OPTIONS = {
   ctrl_z: 'undo',
   ctrl_y: 'redo',
   ctrl_bracket: 'highlight-brackets',
+  toggleComment: true,
   extraKeys: {
-    'Ctrl-Space': 'autocomplete'
+    'Ctrl-Space': 'autocomplete',
+    "Cmd-/": "toggleComment",
+    "Ctrl-/": "toggleComment",
   }
 }
 

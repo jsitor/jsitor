@@ -1,9 +1,9 @@
 <template>
   <div id="editor-css" class="editor">
     <header>
-      CSS
-      <span v-show="expandSourceType !== 'css'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'css')"></span>
-      <span v-show="expandSourceType === 'css'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
+      <span class="title">CSS</span>
+      <span v-show="expandSourceType !== 'css'" class="icon right icon-maximize-2" @click="$emit('onExpandClicked', 'css')"></span>
+      <span v-show="expandSourceType === 'css'" class="icon right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="localSource"

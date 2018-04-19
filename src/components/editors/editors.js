@@ -16,6 +16,7 @@ import "codemirror/addon/edit/closebrackets.js";
 import "codemirror/addon/edit/matchbrackets.js";
 import "codemirror/addon/fold/xml-fold.js";
 import "codemirror/addon/edit/matchtags.js";
+import "codemirror/addon/comment/comment.js";
 
 import "codemirror/addon/hint/show-hint.js";
 import "codemirror/addon/hint/xml-hint.js";

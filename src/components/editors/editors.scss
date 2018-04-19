@@ -73,13 +73,25 @@ $gray-darker: #2d333b;
         z-index: 10;
         color: lightgray;
         width: 100%;
+
+        .icon{
+          font-size: 16px;
+        }
+
+        .title{
+          background: #424242;
+          padding: 2px 5px;
+          border-radius: 3px;
+          margin-left: 22px;
+          box-shadow: 0 0 10px #111419;
+        }
       }
 
       .vue-codemirror {
         height: 100%;
         padding-top: 36px;
         background: #21272f;
-        font-size: 13px;
+        font-size: 14px;
 
         .CodeMirror {
           height: 100%;
@@ -99,15 +111,14 @@ $gray-darker: #2d333b;
           }
 
           .CodeMirror-matchingbracket {
-            color: lighten(yellow, 10%) !important;
             text-decoration: none;
+            background: #777080;
           }
         }
       }
     }
 
     #editor-js {
-      // grid-area: js;
 
       &:before {
         content: "";
