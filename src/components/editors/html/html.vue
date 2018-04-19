@@ -1,9 +1,9 @@
 <template>
   <div id="editor-html" class="editor">
     <header>
-      HTML
-      <span v-show="expandSourceType !== 'html'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'html')"></span>
-      <span v-show="expandSourceType === 'html'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
+      <span class="title">HTML</span>
+      <span v-show="expandSourceType !== 'html'" class="icon right icon-maximize-2" @click="$emit('onExpandClicked', 'html')"></span>
+      <span v-show="expandSourceType === 'html'" class="icon right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="localSource"

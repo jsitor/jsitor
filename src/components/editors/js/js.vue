@@ -1,9 +1,9 @@
 <template>
   <div id="editor-js" class="editor">
     <header>
-      JavaScript
-      <span v-show="expandSourceType !== 'js'" class="right icon-maximize-2" @click="$emit('onExpandClicked', 'js')"></span>
-      <span v-show="expandSourceType === 'js'" class="right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
+      <span class="title">JavaScript</span>
+      <span v-show="expandSourceType !== 'js'" class="icon right icon-maximize-2" @click="$emit('onExpandClicked', 'js')"></span>
+      <span v-show="expandSourceType === 'js'" class="icon right icon-minimize-2" @click="$emit('onShrinkClicked')"></span>
     </header>
     <codemirror
       v-model="localSource"
