@@ -4,6 +4,8 @@ import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
 import NavComponent from "./nav/nav.vue";
 import { EventBus } from '../event-bus.js';
+import Auth from '../../services/auth';
+import Gist from '../../services/gist';
 
 //CodeMirror imports - modes
 import "codemirror/mode/css/css.js";
@@ -49,7 +51,8 @@ export default {
       html: "",
       css: "",
       expandSourceType: "",
-      autoRun: false
+      autoRun: false,
+      isLoggedIn: false
     };
   },
 
@@ -57,12 +60,60 @@ export default {
     this.js = localStorage.getItem(STORAGE.JS);
     this.css = localStorage.getItem(STORAGE.CSS);
     this.html = localStorage.getItem(STORAGE.HTML);
+
+    if (Auth.token) {
+      Gist.get().then(res => {
+        this.isLoggedIn = true;
+      });
+    } else if (window.location.search.length > 10) {
+      Auth.code = window.location.search.split('?code=')[1];
+      Auth.authenticate().then(res => {
+        this.isLoggedIn = true;
+      });
+    }
   },
 
   methods: {
 
     onRunClicked(){
       EventBus.$emit('run');
+    },
+
+    onLoginClicked() {
+      Auth.getToken();
+    },
+
+    onGistListClicked() {
+      Gist.get().then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+      });
+    },
+
+    onSaveClicked() {
+      let name = prompt('Enter project name');
+      let body = {
+        "description": name,
+        "public": true,
+        "files": {
+          "index.html": {
+            "content": this.html
+          },
+          "index.css": {
+            "content": this.css
+          },
+          "index.js": {
+            "content": this.js
+          }
+        }
+      };
+
+      Gist.create(body).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+      });
     },
 
     onChangeJavascript(source) {

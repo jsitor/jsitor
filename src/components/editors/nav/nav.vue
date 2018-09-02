@@ -23,12 +23,27 @@
         <span class="text">Collaborate</span>
       </li>
 
-      <li>
+      <li @click="$emit('onSaveClicked')" v-if="isLoggedIn">
+        <span class="icon icon-star"></span>
+        <span class="text">Save</span>
+      </li>
+
+      <li @click="$emit('onLoginClicked')" v-if="!isLoggedIn">
+        <span class="icon icon-star"></span>
+        <span class="text">Github Login</span>
+      </li>
+
+      <li @click="$emit('onGistListClicked')" v-if="isLoggedIn">
+        <span class="icon icon-star"></span>
+        <span class="text">List</span>
+      </li>
+
+      <!-- <li>
         <a href="https://github.com/jsitor/jsitor" target="_blank">
           <span class="icon icon-star"></span>
           <span class="text">Github</span>
         </a>
-      </li>
+      </li> -->
       <!--
       <li>
         <span class="icon icon-grid"></span>
@@ -56,7 +71,7 @@
 
 <script>
 export default {
-  props: ['sourceType']
+  props: ['sourceType', 'isLoggedIn']
 };
 </script>
 
