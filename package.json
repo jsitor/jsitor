@@ -13,10 +13,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.3",
     "sass-loader": "^7.0.1",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",
+    "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.1",
     "vue-split-panel": "^1.0.4"
   },

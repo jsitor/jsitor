@@ -3,11 +3,12 @@ $gray-darker: #2d333b;
 .editors {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   .editors-content {
     position: relative;
     height: 100%;
+    flex: 1;
 
     .gutter{
       background: black;

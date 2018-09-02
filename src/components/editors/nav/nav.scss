@@ -1,78 +1,42 @@
-$bg-color: white;
+@import '../../../styles/consts';
+
 nav {
   color: black;
-
-  font-size: 14px;
-  overflow: hidden;
   background: $bg-color;
-  width: 100%;
-  padding: 0px 15px;
-  line-height: 50px;
-  min-height: 50px;
+  width: 60px;
+  height: 100%;
+  text-align: center;
 
   box-shadow: 0px 0 14px 0 black;
-  position: relative;
-  z-index: 1000;
 
-  .title {
+  header {
     font-family: monospace;
-    color: #3F51B5;
+    background: $blue;
+    color: white;
     font-weight: bold;
     font-size: 20px;
+    padding: 20px 0;
   }
 
-  ul.links-source {
-    padding: 0 10px;
-    vertical-align: top;
+  ul{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
 
     li{
-      display: inline-block;
-      padding: 0 10px;
-      height: 50px;
+      display: block;
+      padding: 10px;
+      font-size: 20px;
       cursor: pointer;
-      float: left;
 
-      &.active{
-        background: #222730;
-        color: white;
+      &:hover{
+        background: $lightest-blue;
       }
 
-      &:active {
-        background: darken($bg-color, 8%);
+      &:active{
+
       }
     }
   }
 
-  ul.links {
-    overflow: auto;
-    float: right;
-
-    li {
-      padding: 0 10px;
-      display: inline-block;
-      height: 50px;
-
-      .icon{
-        vertical-align: middle;
-        display: inline-block;
-        line-height: 16px;
-      }
-
-      .text{
-        display: inline-block;
-        vertical-align: middle;
-        line-height: 16px;
-        padding-left: 5px;
-      }
-
-      &:hover {
-        cursor: pointer;
-        background: darken($bg-color, 5%);
-      }
-
-      &:active {
-        background: darken($bg-color, 8%);
-      }
-    }
-  }
 }

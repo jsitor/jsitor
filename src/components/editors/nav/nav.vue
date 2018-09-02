@@ -1,41 +1,28 @@
 <template>
   <nav>
-    <span class="title">
-      <b>&lt;/&gt;</b>
-    </span>
 
-    <ul class="links-source" v-show="sourceType !== ''">
-      <li :class="{ active: sourceType === 'js'}" @click="$emit('onSourceTypeChange', 'js')">JS</li>
-      <li :class="{ active: sourceType === 'css'}" @click="$emit('onSourceTypeChange', 'css')">CSS</li>
-      <li :class="{ active: sourceType === 'html'}" @click="$emit('onSourceTypeChange', 'html')">HTML</li>
-      <li :class="{ active: sourceType === 'output'}" @click="$emit('onSourceTypeChange', 'output')">Result</li>
-    </ul>
+    <header>&lt;/&gt;</header>
 
-    <ul class="links">
+    <ul>
 
-      <li @click="$emit('onRunClicked')">
+      <li @click="$emit('onRunClicked')" title="RUN">
         <span class="icon icon-play"></span>
-        <span class="text">Run</span>
       </li>
 
-      <li onclick="TogetherJS(this); return false;">
+      <li onclick="TogetherJS(this); return false;" title="COLOBRATE">
         <span class="icon icon-user-plus"></span>
-        <span class="text">Collaborate</span>
       </li>
 
-      <li @click="$emit('onSaveClicked')" v-if="isLoggedIn">
+      <li @click="$emit('onSaveClicked')" v-if="isLoggedIn" title="SAVE">
         <span class="icon icon-star"></span>
-        <span class="text">Save</span>
       </li>
 
-      <li @click="$emit('onLoginClicked')" v-if="!isLoggedIn">
+      <li @click="$emit('onLoginClicked')" v-if="!isLoggedIn" title="LOGIN">
         <span class="icon icon-star"></span>
-        <span class="text">Github Login</span>
       </li>
 
-      <li @click="$emit('onGistListClicked')" v-if="isLoggedIn">
+      <li @click="$emit('onGistListClicked')" v-if="isLoggedIn" title="GIST LIST">
         <span class="icon icon-star"></span>
-        <span class="text">List</span>
       </li>
 
       <!-- <li>
@@ -71,7 +58,7 @@
 
 <script>
 export default {
-  props: ['sourceType', 'isLoggedIn']
+  props: ['']
 };
 </script>
 
