@@ -4,14 +4,14 @@ export const NODE_ENV = {
 };
 
 export const NAV_ACTIONS = {
-  RUN: 'RUN',
-  SAVE: 'SAVE',
-  NEW: 'NEW',
-  SNIPPETS: 'SNIPPETS',
-  LOGIN: 'LOGIN',
-  COLOBRATE: 'COLOBRATE',
-  TRENDING: 'TRENDING',
-  SETTINGS: 'SETTINGS'
+  RUN: 'run',
+  SAVE: 'save',
+  NEW: 'new',
+  GISTS: 'gists',
+  LOGIN: 'login',
+  COLOBRATE: 'colobrate',
+  TRENDING: 'trending',
+  SETTINGS: 'settings'
 };
 
 export const NAV_TOP_ACTIONS = [{
@@ -32,10 +32,10 @@ export const NAV_TOP_ACTIONS = [{
 }];
 
 export const NAV_BOTTOM_ACTIONS = [{
-  title: 'Snippets',
-  tooltip: 'Snippets',
+  title: 'Gists',
+  tooltip: 'Gists',
   icon: 'icon-download-cloud',
-  event: NAV_ACTIONS.SNIPPETS
+  event: NAV_ACTIONS.GISTS
 }, {
   title: 'Login',
   tooltip: 'Login',

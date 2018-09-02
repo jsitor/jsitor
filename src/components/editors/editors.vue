@@ -9,9 +9,9 @@
       :isLoggedIn="isLoggedIn"
       @onSourceTypeChange="onExpandClicked"
       @onRunClicked="onRunClicked"
-      @onLoginClicked="onLoginClicked"
-      @onSaveClicked="onSaveClicked"
-      @onGistListClicked="onGistListClicked">
+      @login="onLoginClicked"
+      @save="onSaveClicked"
+      @snippets="onGistListClicked">
     </NavComponent>
 
     <div class="editors-content" :class="expandSourceType">
