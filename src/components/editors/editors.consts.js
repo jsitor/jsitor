@@ -18,11 +18,6 @@ export const EDITOR_OPTIONS = {
   }
 }
 
-
-export const EDITOR_MODES = {
-
-};
-
 export const SOURCE_TYPES = {
   JS: 'js',
   HTML: 'html',

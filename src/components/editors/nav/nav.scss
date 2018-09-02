@@ -23,18 +23,28 @@ nav {
     flex-direction: column;
     padding: 10px 0;
 
+    &:last-child{
+      position: absolute;
+      bottom: 0;
+    }
+
     li{
       display: block;
       padding: 10px;
       font-size: 20px;
       cursor: pointer;
 
+      .text{
+        font-size: 0.5rem;
+        display: block;
+      }
+
       &:hover{
         background: $lightest-blue;
       }
 
       &:active{
-
+        background: $lighter-blue;
       }
     }
   }
