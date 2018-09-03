@@ -1,6 +1,6 @@
-import { NAV_TOP_ACTIONS, NAV_BOTTOM_ACTIONS } from "../../app.constants";
+import { NAV_TOP_ACTIONS, NAV_BOTTOM_ACTIONS } from "./nav.constants";
 import Auth from '../../services/auth';
-import Gist from '../../services/gist';
+import { NAV_ACTIONS } from "../../app.constants";
 
 export default {
 
@@ -13,24 +13,15 @@ export default {
 
   mounted() {
 
-    if (Auth.token) {
-      Gist.get().then(res => {
-        this.isLoggedIn = true;
-      });
-    } else if (window.location.search.length > 10) {
-      Auth.code = window.location.search.split('?code=')[1];
-      Auth.authenticate().then(res => {
-        this.isLoggedIn = true;
-      });
-    }
-
   },
 
   methods: {
     callback(action) {
-      console.log(action);
-      this.$emit(action.toLowerCase());
-      //should be handled inside either here or on top
+      if (action === NAV_ACTIONS.LOGIN) {
+        Auth.login();
+      } else {
+        this.$emit(action.toLowerCase());
+      }
     }
   }
 };

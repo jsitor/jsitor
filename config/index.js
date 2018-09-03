@@ -6,6 +6,8 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../tmp'),
 
     // Paths
     assetsSubDirectory: 'static',

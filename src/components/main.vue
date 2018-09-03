@@ -3,7 +3,7 @@
 
     <NavComponent></NavComponent>
 
-    <AsideComponent></AsideComponent>
+    <!-- <AsideComponent></AsideComponent> -->
 
     <EditorsComponent></EditorsComponent>
   </div>
