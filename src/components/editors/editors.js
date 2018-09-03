@@ -2,7 +2,6 @@ import JavascriptEditorComponent from "./js/js.vue";
 import HTMLEditorComponent from "./html/html.vue";
 import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
-import NavComponent from "./nav/nav.vue";
 import { EventBus } from '../event-bus.js';
 import Auth from '../../services/auth';
 import Gist from '../../services/gist';
@@ -41,8 +40,7 @@ export default {
     JavascriptEditorComponent,
     HTMLEditorComponent,
     CSSEditorComponent,
-    OutputEditorComponent,
-    NavComponent
+    OutputEditorComponent
   },
 
   data() {

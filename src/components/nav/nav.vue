@@ -1,8 +1,6 @@
 <template>
   <nav>
-
     <header>&lt;/&gt;</header>
-
     <ul>
       <li v-for="action in topNavActions" :key="action.event" @click="callback(action.event)" :title="action.tooltip">
         <span class="icon" :class="action.icon"></span>

@@ -1,6 +1,6 @@
-import { NAV_TOP_ACTIONS, NAV_BOTTOM_ACTIONS } from "../../../app.constants";
-import Auth from '../../../services/auth';
-import Gist from '../../../services/gist';
+import { NAV_TOP_ACTIONS, NAV_BOTTOM_ACTIONS } from "../../app.constants";
+import Auth from '../../services/auth';
+import Gist from '../../services/gist';
 
 export default {
 
