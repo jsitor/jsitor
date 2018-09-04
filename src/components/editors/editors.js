@@ -28,6 +28,8 @@ import "codemirror/addon/hint/css-hint.js";
 //CodeMirror themes
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/theme/material.css";
+import Projects from "../../services/projects";
+import { NAV_ACTIONS } from "../../app.constants";
 
 const STORAGE = {
   JS: "js",
@@ -55,9 +57,18 @@ export default {
   },
 
   mounted() {
-    this.js = localStorage.getItem(STORAGE.JS);
-    this.css = localStorage.getItem(STORAGE.CSS);
-    this.html = localStorage.getItem(STORAGE.HTML);
+    // this.js = localStorage.getItem(STORAGE.JS);
+    // this.css = localStorage.getItem(STORAGE.CSS);
+    // this.html = localStorage.getItem(STORAGE.HTML);
+
+    EventBus.$on(NAV_ACTIONS.SAVE, clickCount => {
+      this.onSaveClicked();
+    });
+
+    EventBus.$on(NAV_ACTIONS.LOGGED_IN, clickCount => {
+      let projectId = location.pathname.replace('/', '');
+      this.onLoad(projectId);
+    });
 
     if (Auth.token) {
       Gist.get().then(res => {
@@ -73,41 +84,27 @@ export default {
 
   methods: {
 
-    onRunClicked(){
-      EventBus.$emit('run');
-    },
-
-    onLoginClicked() {
-      Auth.getToken();
-    },
-
-    onGistListClicked() {
-      Gist.get().then(res => {
-        console.log(res)
+    onLoad(id) {
+      Projects.get(id).then(res => {
+        this.js = res.js;
+        this.html = res.html;
+        this.css = res.css;
       }).catch(err => {
         console.log(err);
       });
     },
 
     onSaveClicked() {
-      let name = prompt('Enter project name');
+
       let body = {
-        "description": name,
-        "public": true,
-        "files": {
-          "index.html": {
-            "content": this.html
-          },
-          "index.css": {
-            "content": this.css
-          },
-          "index.js": {
-            "content": this.js
-          }
-        }
+        "id": location.pathname.replace('/', ''),
+        "name": name,
+        "html": this.html,
+        "css": this.css,
+        "js": this.js
       };
 
-      Gist.create(body).then(res => {
+      Projects.update(body).then(res => {
         console.log(res)
       }).catch(err => {
         console.log(err);

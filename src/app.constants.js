@@ -7,9 +7,10 @@ export const NAV_ACTIONS = {
   RUN: 'run',
   SAVE: 'save',
   NEW: 'new',
-  GISTS: 'gists',
+  PROJECTS: 'PROJECTS',
   LOGIN: 'login',
   COLOBRATE: 'colobrate',
   TRENDING: 'trending',
-  SETTINGS: 'settings'
+  SETTINGS: 'settings',
+  LOGGED_IN: 'logged-in'
 };

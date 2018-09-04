@@ -17,16 +17,33 @@ export const NAV_TOP_ACTIONS = [{
   event: NAV_ACTIONS.NEW
 }];
 
-export const NAV_BOTTOM_ACTIONS = [{
-  title: 'Gists',
-  tooltip: 'Gists',
-  icon: 'icon-download-cloud',
-  event: NAV_ACTIONS.GISTS
-}, {
+export const NAV_BOTTOM_ACTIONS_GUEST = [{
   title: 'Login',
   tooltip: 'Login',
   icon: 'icon-user',
   event: NAV_ACTIONS.LOGIN
+}, {
+  title: 'Colobrate',
+  tooltip: 'Colobrate',
+  icon: 'icon-user-plus',
+  event: NAV_ACTIONS.COLOBRATE
+}, {
+  title: 'Trending',
+  tooltip: 'Trending',
+  icon: 'icon-zap',
+  event: NAV_ACTIONS.TRENDING
+}, {
+  title: 'Settings',
+  tooltip: 'Settings',
+  icon: 'icon-cog',
+  event: NAV_ACTIONS.SETTINGS
+}];
+
+export const NAV_BOTTOM_ACTIONS_USER = [{
+  title: 'Projects',
+  tooltip: 'Projects',
+  icon: 'icon-download-cloud',
+  event: NAV_ACTIONS.PROJECTS
 }, {
   title: 'Colobrate',
   tooltip: 'Colobrate',
