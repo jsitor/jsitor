@@ -1,5 +1,8 @@
 <template>
   <nav>
+
+    <ProjectsModalComponent v-if="showProjects"></ProjectsModalComponent>
+
     <header>&lt;/&gt;</header>
     <ul>
       <li v-for="action in topNavActions" :key="action.event" @click="callback(action.event)" :title="action.tooltip">

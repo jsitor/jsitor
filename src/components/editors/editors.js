@@ -30,6 +30,7 @@ import "codemirror/addon/hint/show-hint.css";
 import "codemirror/theme/material.css";
 import Projects from "../../services/projects";
 import { NAV_ACTIONS } from "../../app.constants";
+import projectUtils from "../../services/project.-utils";
 
 const STORAGE = {
   JS: "js",
@@ -65,26 +66,13 @@ export default {
       this.onSaveClicked();
     });
 
-    EventBus.$on(NAV_ACTIONS.LOGGED_IN, clickCount => {
-      let projectId = location.pathname.replace('/', '');
-      this.onLoad(projectId);
-    });
-
-    if (Auth.token) {
-      Gist.get().then(res => {
-        this.isLoggedIn = true;
-      });
-    } else if (window.location.search.length > 10) {
-      Auth.code = window.location.search.split('?code=')[1];
-      Auth.authenticate().then(res => {
-        this.isLoggedIn = true;
-      });
-    }
+    this.onLoad();
   },
 
   methods: {
 
-    onLoad(id) {
+    onLoad() {
+      let id = projectUtils.getId();
       Projects.get(id).then(res => {
         this.js = res.js;
         this.html = res.html;
@@ -97,7 +85,7 @@ export default {
     onSaveClicked() {
 
       let body = {
-        "id": location.pathname.replace('/', ''),
+        "id": projectUtils.getId(),
         "name": name,
         "html": this.html,
         "css": this.css,

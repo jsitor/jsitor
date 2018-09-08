@@ -10,14 +10,20 @@ import {
   NAV_ACTIONS
 } from "../../app.constants";
 import ProjectsApi from "../../services/projects";
+import ProjectsModalComponent from './projects/projects.modal.vue';
 
 export default {
+
+  components: {
+    ProjectsModalComponent
+  },
 
   data: () => {
     return {
       topNavActions: NAV_TOP_ACTIONS,
       bottomNavActions: NAV_BOTTOM_ACTIONS_GUEST,
-      profile: {}
+      profile: {},
+      showProjects: false
     };
   },
 
@@ -37,8 +43,11 @@ export default {
         ProjectsApi.create({
           name: prompt('Project name?')
         }).then(res => {
-          window.open(`${location.origin}/${res._id}`, '_self');
+          console.log(res);
+          window.open(`${location.origin}/${res.userId}/${res._id}`, '_self');
         });
+      } else if (action === NAV_ACTIONS.PROJECTS) {
+        this.showProjects = true;
       } else {
         EventBus.$emit(action.toLowerCase());
       }

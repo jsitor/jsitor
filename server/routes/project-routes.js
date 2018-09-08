@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Project = require('../models/project-model');
+const { GUEST } = require('../consts');
 
 router.get('/', (req, res) => {
   Project.find({}).then((projects) => {
@@ -22,6 +23,15 @@ router.delete('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
+
+  if (!req.user || req.user.id !== req.user) {
+    console.log('creating new of other user');
+    createNew(req, (project) => {
+      res.send(project);
+    });
+    return;
+  }
+
   Project.updateOne({
     _id: req.body.id
   }, req.body).then((project) => {
@@ -32,7 +42,7 @@ router.put('/', (req, res) => {
 router.post('/', (req, res) => {
   new Project({
     name: req.body.name,
-    userId: req.user.id,
+    userId: req.user? req.user.id : GUEST,
     html: req.body.html,
     css: req.body.css,
     js: req.body.js
@@ -40,5 +50,17 @@ router.post('/', (req, res) => {
     res.send(project);
   });
 });
+
+function createNew(req, cb) {
+  new Project({
+    name: req.body.name,
+    userId: req.user? req.user.id : GUEST,
+    html: req.body.html,
+    css: req.body.css,
+    js: req.body.js
+  }).save().then((project) => {
+    cb(project);
+  });
+}
 
 module.exports = router;

@@ -8,6 +8,8 @@ const authRoutes = require('./routes/auth-routes');
 const projectRoutes = require('./routes/project-routes');
 const profileRoutes = require('./routes/profile-routes');
 const keys = require('./config/keys');
+const authCheck = require('./auth-check');
+const { GUEST }= require('./consts');
 
 require('./config/passport-setup');
 
@@ -40,16 +42,8 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 // set up routes
 app.use('/auth', authRoutes);
 app.use('/profile', authCheck, profileRoutes);
-app.use('/projects', authCheck, projectRoutes);
+app.use('/projects', projectRoutes);
 
 app.listen(3000, () => {
   console.log('app now listening for requests on port 3000');
 });
-
-function authCheck (req, res, next) {
-  if (!req.user) {
-    res.status(401).send('');
-  } else {
-    next();
-  }
-}

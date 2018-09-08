@@ -1,4 +1,5 @@
 class ProjectsApi {
+
   get(id) {
     return fetch(`/api/projects/${id || ''}`, {
       headers: {

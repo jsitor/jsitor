@@ -22,6 +22,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "sass-loader": "^7.0.1",
+    "shortid": "^2.2.13",
     "vue": "^2.5.2",
     "vue-codemirror": "^4.0.4",
     "vue-material": "^1.0.0-beta-10.2",
