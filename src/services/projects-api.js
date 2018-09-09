@@ -34,7 +34,7 @@ class ProjectsApi {
       headers: {
         'content-type': 'application/json; charset=UTF-8'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ id: data._id })
     }).then(res => res.json());
   }
 }

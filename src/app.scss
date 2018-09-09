@@ -1,6 +1,4 @@
-@import "./styles/style.css";
-@import "./styles/common.scss";
-@import "./styles/modal.scss";
+@import "./styles/index.scss";
 
 html,
 body {
@@ -9,6 +7,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  font-size: 14px;
 }
 
 * {

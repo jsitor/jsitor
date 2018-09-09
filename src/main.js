@@ -6,11 +6,13 @@ import router from './router';
 
 import VueCodemirror from 'vue-codemirror';
 import VueSplit from 'vue-split-panel';
+import VueMoment from 'vue-moment';
 
 import 'codemirror/lib/codemirror.css';
 
 Vue.use(VueCodemirror);
 Vue.use(VueSplit);
+Vue.use(VueMoment);
 
 Vue.config.productionTip = false;
 

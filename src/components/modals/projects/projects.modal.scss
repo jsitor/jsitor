@@ -1,0 +1,41 @@
+@import "../../../styles/consts";
+
+.modal.projects-modal{
+
+  .modal-inner{
+    max-width: 100%;
+
+    ul{
+      width: 100%;
+
+      li{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+        padding: 5px 0px;
+
+        > * {
+          flex: 1;
+          padding: 0 5px;
+        }
+
+        .action{
+          width: 50px;
+          text-align: right;
+          display: none;
+        }
+
+        &:hover{
+          color: $blue;
+
+          .action{
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}

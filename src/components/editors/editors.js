@@ -3,8 +3,6 @@ import HTMLEditorComponent from "./html/html.vue";
 import CSSEditorComponent from "./css/css.vue";
 import OutputEditorComponent from "./output/output.vue";
 import { EventBus } from '../event-bus.js';
-import Auth from '../../services/auth';
-import Gist from '../../services/gist';
 
 //CodeMirror imports - modes
 import "codemirror/mode/css/css.js";
@@ -28,9 +26,10 @@ import "codemirror/addon/hint/css-hint.js";
 //CodeMirror themes
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/theme/material.css";
-import Projects from "../../services/projects";
+import projectsApi from "../../services/projects-api";
 import { NAV_ACTIONS } from "../../app.constants";
-import projectUtils from "../../services/project.-utils";
+import projectUtils from "../../services/project-utils";
+import projectsStorage from "../../services/project-storage";
 
 const STORAGE = {
   JS: "js",
@@ -73,26 +72,27 @@ export default {
 
     onLoad() {
       let id = projectUtils.getId();
-      Projects.get(id).then(res => {
+      projectsApi.get(id).then(res => {
         this.js = res.js;
         this.html = res.html;
         this.css = res.css;
+        projectsStorage.set(res);
       }).catch(err => {
         console.log(err);
       });
     },
 
     onSaveClicked() {
-
+      let project = projectsStorage.get();
       let body = {
         "id": projectUtils.getId(),
-        "name": name,
+        "name": project.name,
         "html": this.html,
         "css": this.css,
         "js": this.js
       };
 
-      Projects.update(body).then(res => {
+      projectsApi.update(body).then(res => {
         console.log(res)
       }).catch(err => {
         console.log(err);

@@ -1,3 +1,6 @@
+import ProjectsModalComponent from '../modals/projects/projects.modal.vue';
+import NewProjectModalComponent from '../modals/new-project/new-project.modal.vue';
+
 import {
   NAV_TOP_ACTIONS,
   NAV_BOTTOM_ACTIONS_USER,
@@ -5,17 +8,19 @@ import {
 } from "./nav.constants";
 
 import Auth from '../../services/auth';
-import {EventBus} from '../event-bus';
+import {
+  EventBus
+} from '../event-bus';
+
 import {
   NAV_ACTIONS
 } from "../../app.constants";
-import ProjectsApi from "../../services/projects";
-import ProjectsModalComponent from './projects/projects.modal.vue';
 
 export default {
 
   components: {
-    ProjectsModalComponent
+    ProjectsModalComponent,
+    NewProjectModalComponent
   },
 
   data: () => {
@@ -23,7 +28,8 @@ export default {
       topNavActions: NAV_TOP_ACTIONS,
       bottomNavActions: NAV_BOTTOM_ACTIONS_GUEST,
       profile: {},
-      showProjects: false
+      showProjects: false,
+      showNewProject: false
     };
   },
 
@@ -40,12 +46,7 @@ export default {
       if (action === NAV_ACTIONS.LOGIN) {
         Auth.login();
       } else if (action === NAV_ACTIONS.NEW) {
-        ProjectsApi.create({
-          name: prompt('Project name?')
-        }).then(res => {
-          console.log(res);
-          window.open(`${location.origin}/${res.userId}/${res._id}`, '_self');
-        });
+        this.showNewProject = true;
       } else if (action === NAV_ACTIONS.PROJECTS) {
         this.showProjects = true;
       } else {

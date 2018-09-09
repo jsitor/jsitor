@@ -11,17 +11,28 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    padding: 20px;
+    padding: 15px;
     text-align: left;
     min-width: 500px;
+    max-height: 90%;
+    height: auto;
+    animation: modalZoomIn 300ms;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 
-    header{
+    .modal-header{
       font-weight: 500;
       padding-bottom: 10px;
     }
 
-    li{
-      display: block;
+    .modal-body{
+      padding-bottom: 10px;
+      overflow: auto;
+    }
+
+    .modal-footer{
+      text-align: right;
     }
   }
 }

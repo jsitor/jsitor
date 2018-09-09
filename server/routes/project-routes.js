@@ -1,66 +1,47 @@
 const router = require('express').Router();
 const Project = require('../models/project-model');
-const { GUEST } = require('../consts');
+const projectsDb = require('../db/projects-db');
 
 router.get('/', (req, res) => {
-  Project.find({}).then((projects) => {
+  projectsDb.getAll().then((projects) => {
     res.send(projects);
   });
 });
 
 router.get('/:id', (req, res) => {
-  Project.findById(req.params.id).then((project) => {
+  projectsDb.getById(req.params.id).then((project) => {
     res.send(project);
   });
 });
 
 router.delete('/', (req, res) => {
-  Project.deleteOne({
-    _id: req.body.id
-  }).then((project) => {
+  projectsDb.delete(req.body.id).then((project) => {
     res.send(project);
   });
 });
 
 router.put('/', (req, res) => {
+  projectsDb.getById(req.body.id)
+    .then((project) => {
 
-  if (!req.user || req.user.id !== req.user) {
-    console.log('creating new of other user');
-    createNew(req, (project) => {
-      res.send(project);
+      if (project.userId !== req.user.id) {
+        console.log('new');
+        projectsDb.create(req.user, req.body).then((project) => {
+          res.send(project);
+        });
+      } else {
+        console.log('modified existing', req.body, Object.assign(project, req.body));
+        projectsDb.update(req.body.id, Object.assign(project, req.body)).then((project) => {
+          res.send(project);
+        });
+      }
     });
-    return;
-  }
-
-  Project.updateOne({
-    _id: req.body.id
-  }, req.body).then((project) => {
-    res.send(project);
-  });
 });
 
 router.post('/', (req, res) => {
-  new Project({
-    name: req.body.name,
-    userId: req.user? req.user.id : GUEST,
-    html: req.body.html,
-    css: req.body.css,
-    js: req.body.js
-  }).save().then((project) => {
+  projectsDb.create(req.user, req.body).then((project) => {
     res.send(project);
   });
 });
-
-function createNew(req, cb) {
-  new Project({
-    name: req.body.name,
-    userId: req.user? req.user.id : GUEST,
-    html: req.body.html,
-    css: req.body.css,
-    js: req.body.js
-  }).save().then((project) => {
-    cb(project);
-  });
-}
 
 module.exports = router;

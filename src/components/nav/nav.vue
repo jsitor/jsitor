@@ -1,7 +1,8 @@
 <template>
   <nav>
 
-    <ProjectsModalComponent v-if="showProjects"></ProjectsModalComponent>
+    <ProjectsModalComponent v-if="showProjects" @close="showProjects = false"></ProjectsModalComponent>
+    <NewProjectModalComponent v-if="showNewProject" @close="showNewProject = false"></NewProjectModalComponent>
 
     <header>&lt;/&gt;</header>
     <ul>
