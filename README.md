@@ -1,4 +1,4 @@
-# Jsitor
+# JSitor
 Application can be accessed using URL - http://jsitor.com
 
 # Issues
