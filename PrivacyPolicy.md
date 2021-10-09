@@ -27,7 +27,7 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 All snippets available on this application are publicly accessible. The author of this application are not responsible or liable for loss or damage of any kind during the usage of provided code. 
 All code belongs to the author of the snippet and no license is enforced.
 
-All anonymous snippets will be removed after few days from our database to avoid misuse of the platform, if any user want to persist their work they should sign in and save their snippets.
+The anonymous snippet will be removed after few days from the day of creation from our database to avoid misuse of the platform, if any user want to persist their work they should sign in and save their snippets. The author of this application is not responsible or liable for removing these snippets and loss of data.
 
 **Cookies**
 
