@@ -27,6 +27,8 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 All snippets available on this application are publicly accessible. The author of this application are not responsible or liable for loss or damage of any kind during the usage of provided code. 
 All code belongs to the author of the snippet and no license is enforced.
 
+All anonymous snippets will be removed after few days from our database to avoid misuse of the platform, if any user want to persist their work they should sign in and save their snippets.
+
 **Cookies**
 
 Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
